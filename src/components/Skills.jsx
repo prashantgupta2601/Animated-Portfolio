@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion'
+import { VscVscode } from 'react-icons/vsc'
 import { 
   SiReact, SiNodedotjs, SiTailwindcss, SiJavascript, SiMongodb, 
-  SiFigma, SiGit, SiNextdotjs, SiTypescript, SiPython 
+  SiFigma, SiGit, SiNextdotjs, SiTypescript, SiPython,
+  SiPhp, SiMysql, SiLaravel, SiVercel,
+  SiOpenai, SiFramer, SiGithub
 } from 'react-icons/si'
 import { FaHtml5, FaCss3Alt } from 'react-icons/fa'
 
@@ -22,7 +25,9 @@ const Skills = () => {
       title: "Backend & database",
       skills: [
         { name: "Node.js", icon: <SiNodedotjs className="text-[#339933]" />, level: "85%" },
-        { name: "Express", icon: <span className="text-white font-bold">EX</span>, level: "88%" },
+        { name: "PHP", icon: <SiPhp className="text-[#777BB4]" />, level: "82%" },
+        { name: "Laravel", icon: <SiLaravel className="text-[#FF2D20]" />, level: "80%" },
+        { name: "MySQL", icon: <SiMysql className="text-[#4479A1]" />, level: "85%" },
         { name: "MongoDB", icon: <SiMongodb className="text-[#47A248]" />, level: "82%" },
         { name: "Python", icon: <SiPython className="text-[#3776AB]" />, level: "75%" },
       ]
@@ -30,9 +35,12 @@ const Skills = () => {
     {
       title: "Design & Tools",
       skills: [
-        { name: "Figma", icon: <SiFigma className="text-[#F24E1E]" />, level: "85%" },
+        { name: "VS Code", icon: <VscVscode className="text-[#007ACC]" />, level: "100%" },
+        { name: "GitHub", icon: <SiGithub className="text-white" />, level: "95%" },
+        { name: "Vercel", icon: <SiVercel className="text-white" />, level: "90%" },
+        { name: "OpenAI API", icon: <SiOpenai className="text-[#412991]" />, level: "85%" },
+        { name: "Framer Motion", icon: <SiFramer className="text-[#0055FF]" />, level: "90%" },
         { name: "Git", icon: <SiGit className="text-[#F05032]" />, level: "90%" },
-        { name: "Postman", icon: <span className="text-[#FF6C37] font-bold">P</span>, level: "88%" },
       ]
     }
   ]

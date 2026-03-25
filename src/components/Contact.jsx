@@ -1,27 +1,151 @@
-import { motion } from 'framer-motion'
-import { FiMail, FiPhone, FiMapPin, FiSend, FiGithub, FiLinkedin, FiTwitter } from 'react-icons/fi'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { FiMail, FiPhone, FiMapPin, FiSend, FiGithub, FiLinkedin, FiLoader, FiCheckCircle, FiX } from 'react-icons/fi'
+import { SiGmail } from 'react-icons/si'
 import { toast } from 'react-hot-toast'
+import emailjs from 'emailjs-com'
+
+const SuccessModal = ({ isOpen, onClose }) => (
+  <AnimatePresence>
+    {isOpen && (
+      <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/60 backdrop-blur-sm">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.9, y: 20 }}
+          className="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8 max-w-sm w-full relative shadow-2xl overflow-hidden"
+        >
+          {/* Decorative background circle */}
+          <div className="absolute -top-24 -right-24 w-48 h-48 bg-blue-500/10 blur-3xl rounded-full" />
+          
+          <div className="flex flex-col items-center text-center relative z-10">
+            <div className="w-20 h-20 rounded-full bg-green-500/10 flex items-center justify-center mb-6">
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ type: "spring", stiffness: 200, delay: 0.1 }}
+              >
+                <FiCheckCircle className="text-4xl text-green-500" />
+              </motion.div>
+            </div>
+            
+            <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
+            <p className="text-gray-400 mb-8">
+              Thank you for reaching out, Prashant. I'll get back to you as soon as possible!
+            </p>
+            
+            <button
+              onClick={onClose}
+              className="w-full py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold transition-all duration-300"
+            >
+              Close
+            </button>
+          </div>
+          
+          <button 
+            onClick={onClose}
+            className="absolute top-4 right-4 p-2 text-gray-400 hover:text-white transition-colors"
+          >
+            <FiX size={20} />
+          </button>
+        </motion.div>
+      </div>
+    )}
+  </AnimatePresence>
+)
 
 const Contact = () => {
-  const handleSubmit = (e) => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showSuccessModal, setShowSuccessModal] = useState(false)
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  })
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  const validateForm = () => {
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+      toast.error('Please fill in all fields')
+      return false
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(formData.email)) {
+      toast.error('Please enter a valid email address')
+      return false
+    }
+    return true
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    toast.success('Message sent successfully! (Demo Mode)')
+    
+    if (!validateForm()) return
+
+    setIsSubmitting(true)
+
+    try {
+      // Initialize with public key for redundancy
+      emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'public_key')
+
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        reply_to: formData.email,
+        to_email: 'prashantgzp2601@gmail.com', // Explicitly pass the recipient email
+        subject: formData.subject,
+        message: formData.message,
+      }
+
+      const result = await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_id', 
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_id', 
+        templateParams,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'public_key'
+      )
+
+      if (result.status === 200) {
+        setShowSuccessModal(true)
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        })
+      }
+    } catch (error) {
+      console.error('Full EmailJS Error Object:', error)
+      const errorMessage = error?.text || error?.message || 'Failed to send message. Please try again later.'
+      toast.error(errorMessage)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const contactInfo = [
-    { icon: <FiMail />, label: 'Email', value: 'hello@prashant.dev', link: 'mailto:hello@prashant.dev' },
-    { icon: <FiPhone />, label: 'Phone', value: '+91 98765 43210', link: 'tel:+919876543210' },
-    { icon: <FiMapPin />, label: 'Location', value: 'Bangalore, India', link: '#' },
+    { icon: <FiMail />, label: 'Email', value: 'prashantguptagzp2708@gmail.com', link: 'mailto:prashantguptagzp2708@gmail.com' },
+    { icon: <FiPhone />, label: 'Phone', value: '+91 73092 11871', link: 'tel:+917309211871' },
+    { icon: <FiMapPin />, label: 'Location', value: 'Ghazipur, India', link: 'https://maps.google.com/?q=Ghazipur,India' },
   ]
 
   const socialLinks = [
-    { icon: <FiGithub />, name: 'GitHub', link: '#' },
-    { icon: <FiLinkedin />, name: 'LinkedIn', link: '#' },
-    { icon: <FiTwitter />, name: 'Twitter', link: '#' },
+    { icon: <FiGithub />, name: 'GitHub', link: 'https://github.com/prashantgupta2601' },
+    { icon: <FiLinkedin />, name: 'LinkedIn', link: 'https://www.linkedin.com/in/prashant-gupta-6577a8371/' },
+    { icon: <SiGmail />, name: 'Gmail', link: 'mailto:prashantguptagzp2708@gmail.com' },
   ]
 
   return (
     <section id="contact" className="py-24 px-6 relative overflow-hidden bg-[#050505]">
+      <SuccessModal isOpen={showSuccessModal} onClose={() => setShowSuccessModal(false)} />
+      
       {/* Background radial gradient */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-purple-500/5 blur-[120px] rounded-full pointer-events-none" />
 
@@ -97,6 +221,9 @@ const Contact = () => {
                   <input 
                     required
                     type="text" 
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
                     placeholder="Your Name" 
                     className="w-full px-6 py-4 rounded-xl bg-white/5 border border-white/10 focus:border-blue-500/50 focus:outline-none focus:ring-1 focus:ring-blue-500/50 transition-all"
                   />
@@ -106,6 +233,9 @@ const Contact = () => {
                   <input 
                     required
                     type="email" 
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     placeholder="your@email.com" 
                     className="w-full px-6 py-4 rounded-xl bg-white/5 border border-white/10 focus:border-blue-500/50 focus:outline-none focus:ring-1 focus:ring-blue-500/50 transition-all"
                   />
@@ -116,6 +246,9 @@ const Contact = () => {
                 <input 
                   required
                   type="text" 
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
                   placeholder="How can I help you?" 
                   className="w-full px-6 py-4 rounded-xl bg-white/5 border border-white/10 focus:border-blue-500/50 focus:outline-none focus:ring-1 focus:ring-blue-500/50 transition-all"
                 />
@@ -125,6 +258,9 @@ const Contact = () => {
                 <textarea 
                   required
                   rows="5" 
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                   placeholder="Your Message..." 
                   className="w-full px-6 py-4 rounded-xl bg-white/5 border border-white/10 focus:border-blue-500/50 focus:outline-none focus:ring-1 focus:ring-blue-500/50 transition-all resize-none"
                 ></textarea>
@@ -132,10 +268,25 @@ const Contact = () => {
               
               <button 
                 type="submit"
-                className="w-full py-4 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold hover:shadow-[0_0_25px_rgba(59,130,246,0.5)] transition-all duration-300 flex items-center justify-center space-x-2 group"
+                disabled={isSubmitting}
+                className={`w-full py-4 rounded-xl relative overflow-hidden bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold transition-all duration-300 flex items-center justify-center space-x-2 group ${isSubmitting ? 'opacity-70 cursor-not-allowed scale-[0.98]' : 'hover:shadow-[0_0_25px_rgba(59,130,246,0.5)] hover:scale-[1.02]'}`}
               >
-                <span>Send Message</span>
-                <FiSend className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                {isSubmitting ? (
+                  <>
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+                    >
+                      <FiLoader className="text-xl" />
+                    </motion.div>
+                    <span className="animate-pulse">Sending Message...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Send Message</span>
+                    <FiSend className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </>
+                )}
               </button>
             </form>
           </motion.div>

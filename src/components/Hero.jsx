@@ -8,7 +8,7 @@ const Hero = () => {
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="flex flex-col items-center md:items-start text-center md:text-left">
           <motion.div
@@ -21,7 +21,7 @@ const Hero = () => {
               Welcome to my portfolio
             </span>
           </motion.div>
-          
+
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -30,7 +30,7 @@ const Hero = () => {
           >
             Hi, I'm <span className="neon-text">Prashant Gupta</span>
           </motion.h1>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -58,9 +58,10 @@ const Hero = () => {
             className="flex flex-col sm:flex-row gap-4 mb-10 w-full md:w-auto"
           >
             <a
-              href="/resume.pdf"
+              href="/Specialized_CV.pdf"
               target="_blank"
               rel="noopener noreferrer"
+              download="Prashant_Gupta_CV.pdf"
               className="px-8 py-3 rounded-full bg-gradient-to-r from-neonBlue to-neonPurple text-white font-semibold flex items-center justify-center gap-2 hover:scale-105 transition-transform duration-300 shadow-[0_0_20px_rgba(59,130,246,0.5)]"
             >
               <FiDownload /> Download Resume
@@ -81,16 +82,16 @@ const Hero = () => {
             transition={{ duration: 0.5, delay: 0.5 }}
             className="flex items-center gap-6"
           >
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="p-3 glass rounded-full text-white hover:text-neonBlue hover:scale-110 transition-all duration-300">
+            <a href="https://github.com/prashantgupta2601" target="_blank" rel="noopener noreferrer" className="p-3 glass rounded-full text-white hover:text-neonBlue hover:scale-110 transition-all duration-300">
               <FiGithub size={24} />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="p-3 glass rounded-full text-white hover:text-neonBlue hover:scale-110 transition-all duration-300">
+            <a href="https://www.linkedin.com/in/prashant-gupta-6577a8371/" target="_blank" rel="noopener noreferrer" className="p-3 glass rounded-full text-white hover:text-neonBlue hover:scale-110 transition-all duration-300">
               <FiLinkedin size={24} />
             </a>
           </motion.div>
         </div>
       </div>
-      
+
       {/* Scroll Down Indicator */}
       <motion.div
         animate={{ y: [0, 10, 0] }}

@@ -47,6 +47,14 @@ const Projects = () => {
       tags: ["Python", "Web Scraping", "ScraperAPI", "BeautifulSoup"],
       image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?q=80&w=1974&auto=format&fit=crop",
       links: { github: "https://github.com/prashantgupta2601/AI-Chatbot", live: "#" }
+    },
+    {
+      title: "Animated Developer Portfolio",
+      description: "A premium, high-performance portfolio featuring glassmorphic design, interactive particles, and smooth Framer Motion animations. fully responsive and dark-themed.",
+      category: "UI/UX",
+      tags: ["React", "Tailwind CSS", "Framer Motion", "tsparticles"],
+      image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=2055&auto=format&fit=crop",
+      links: { github: "https://github.com/prashantgupta2601/Animated-Portfolio", live: "#" }
     }
   ]
 
@@ -64,7 +72,7 @@ const Projects = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">Portfolio</span>
+            Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">Projects</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto mb-10">
             A selection of my recent works across different technologies.

@@ -71,8 +71,8 @@ const About = () => {
               Creative full-stack developer based in India
             </h3>
             <p className="text-gray-400 text-lg leading-relaxed mb-8">
-              I specialize in building high-performance, responsive web applications using the MERN stack. 
-              My journey in tech is driven by a curiosity to solve complex problems and a passion for 
+              I specialize in building high-performance, responsive web applications using the MERN stack.
+              My journey in tech is driven by a curiosity to solve complex problems and a passion for
               clean, intuitive UI/UX design. I thrive on turning ideas into interactive reality.
             </p>
 
@@ -88,9 +88,13 @@ const About = () => {
               ))}
             </div>
 
-            <button className="px-8 py-3 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] transition-all duration-300">
+            <a 
+              href="/Specialized_CV.pdf" 
+              download="Prashant_Gupta_CV.pdf"
+              className="inline-block px-8 py-3 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] transition-all duration-300"
+            >
               Download CV
-            </button>
+            </a>
           </motion.div>
         </div>
       </div>
