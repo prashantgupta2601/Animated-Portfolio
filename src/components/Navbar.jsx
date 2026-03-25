@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
 import { FiMenu, FiX, FiMoon, FiSun } from 'react-icons/fi';
 import { motion, AnimatePresence } from 'framer-motion';
+import Logo from './Logo';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,9 +31,9 @@ const Navbar = () => {
     <nav className={`fixed w-full top-0 z-50 transition-all duration-300 ${scrolled ? 'glass py-4' : 'bg-transparent py-6'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
-          <div className="flex-shrink-0">
-            <Link to="home" smooth={true} duration={500} className="cursor-pointer text-2xl font-bold neon-text">
-              PG.
+          <div className="flex-shrink-0 flex items-center">
+            <Link to="home" smooth={true} duration={500} className="cursor-pointer">
+              <Logo />
             </Link>
           </div>
           

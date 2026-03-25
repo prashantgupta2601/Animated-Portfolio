@@ -1,5 +1,8 @@
 import { motion } from 'framer-motion'
-import { FiTarget, FiZap, FiCpu, FiMessageSquare } from 'react-icons/fi'
+import { FiTarget, FiZap, FiCpu, FiMessageSquare, FiBookOpen, FiStar, FiCalendar, FiMapPin } from 'react-icons/fi'
+import { FaGraduationCap } from 'react-icons/fa'
+import { HiOutlineAcademicCap } from 'react-icons/hi'
+import { MdOutlineSchool } from 'react-icons/md'
 
 const WhyHireMe = () => {
     const reasons = [
@@ -85,22 +88,69 @@ const WhyHireMe = () => {
                     </motion.div>
                 </div>
 
-                {/* GitHub Stats Section embedded here */}
+                {/* Education Section */}
                 <motion.div 
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="mt-24 text-center"
+                    className="mt-32 max-w-5xl mx-auto"
                 >
-                    <h3 className="text-2xl font-bold text-white mb-10">GitHub Contributions</h3>
-                    <div className="glass p-8 rounded-3xl border-white/5 overflow-x-auto">
-                        <img 
-                            src="https://github-readme-stats.vercel.app/api?username=prashantgupta2601&show_icons=true&theme=transparent&title_color=3b82f6&text_color=9ca3af&icon_color=3b82f6&border_color=ffffff10" 
-                            alt="GitHub Stats" 
-                            className="mx-auto h-48 md:h-52"
-                        />
-                        <div className="mt-8 flex flex-wrap justify-center gap-4">
-                            <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=prashantgupta2601&layout=compact&theme=transparent&text_color=9ca3af&title_color=3b82f6&border_color=ffffff10" alt="Top Languages" className="h-40" />
+                    <div className="relative flex flex-col md:flex-row gap-8 items-start glass p-8 md:p-12 rounded-[2rem] border-white/5 bg-[#0a0a0b]/80 backdrop-blur-xl group hover:border-blue-500/20 transition-all duration-500">
+                        {/* Decorative background glow */}
+                        <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-500/10 blur-[100px] rounded-full pointer-events-none" />
+                        
+                        {/* Left Side: Icon & Vertical Line */}
+                        <div className="flex flex-col items-center gap-4">
+                            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-[0_0_30px_rgba(59,130,246,0.3)] group-hover:scale-110 transition-transform duration-500">
+                                <FiBookOpen className="text-3xl text-white" />
+                            </div>
+                            <div className="w-0.5 h-32 bg-gradient-to-b from-blue-500/50 to-transparent rounded-full" />
+                        </div>
+
+                        {/* Right Side: Content */}
+                        <div className="flex-1 w-full">
+                            {/* Badges */}
+                            <div className="flex flex-wrap justify-between items-center gap-4 mb-8">
+                                <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-500/10 border border-green-500/20">
+                                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                                    <span className="text-xs font-bold text-green-500 uppercase tracking-wider">Pursuing</span>
+                                </div>
+                                <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20">
+                                    <FiStar className="text-purple-400" />
+                                    <span className="text-xs font-bold text-purple-400 uppercase tracking-wider">CGPA: 6.8 / 10</span>
+                                </div>
+                            </div>
+
+                            {/* Degree & Info */}
+                            <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">
+                                B.Tech in Computer Science & Engineering
+                            </h3>
+                            
+                            <div className="flex flex-wrap gap-6 mb-10">
+                                <div className="flex items-center gap-2 text-gray-400">
+                                    <FiMapPin className="text-blue-400" />
+                                    <span className="font-medium">Lovely Professional University</span>
+                                </div>
+                                <div className="flex items-center gap-2 text-gray-400">
+                                    <FiCalendar className="text-indigo-400" />
+                                    <span className="font-medium">2023 – 2027</span>
+                                </div>
+                            </div>
+
+                            {/* Grid Points */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {[
+                                    "Core CS fundamentals: DSA, DBMS, OS, CN",
+                                    "Web development & full-stack projects",
+                                    "Collaborative project-based learning",
+                                    "Active in coding communities & hackathons"
+                                ].map((item, idx) => (
+                                    <div key={idx} className="flex items-center gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-colors">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                                        <p className="text-gray-400 text-sm">{item}</p>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </motion.div>

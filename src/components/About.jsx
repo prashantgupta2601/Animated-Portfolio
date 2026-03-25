@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion'
-import { FiUser, FiZap, FiAward, FiGlobe } from 'react-icons/fi'
+import { FiUser, FiZap, FiAward, FiGlobe, FiCode } from 'react-icons/fi'
 
 const About = () => {
   const stats = [
-    { label: 'Years Experience', value: '2+', icon: <FiZap className="text-yellow-400" /> },
-    { label: 'Projects Completed', value: '15+', icon: <FiGlobe className="text-blue-400" /> },
-    { label: 'Happy Clients', value: '10+', icon: <FiUser className="text-green-400" /> },
-    { label: 'Certifications', value: '5+', icon: <FiAward className="text-purple-400" /> },
+    { label: 'Coding Problems Solved', value: '150+', icon: <FiCode className="text-blue-400" /> },
+    { label: 'Projects Built', value: '5+', icon: <FiGlobe className="text-indigo-400" /> },
+    { label: 'Certifications', value: '10+', icon: <FiAward className="text-purple-400" /> },
+    { label: 'Hackathons Participated', value: '5+', icon: <FiZap className="text-yellow-400" /> },
   ]
 
   return (
