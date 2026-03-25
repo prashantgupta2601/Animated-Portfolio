@@ -54,7 +54,7 @@ const Projects = () => {
       category: "UI/UX",
       tags: ["React", "Tailwind CSS", "Framer Motion", "tsparticles"],
       image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=2055&auto=format&fit=crop",
-      links: { github: "https://github.com/prashantgupta2601/Animated-Portfolio", live: "#" }
+      links: { github: "https://github.com/prashantgupta2601/Animated-Portfolio", live: "https://animated-portfolio-flax-gamma.vercel.app/" }
     }
   ]
 
